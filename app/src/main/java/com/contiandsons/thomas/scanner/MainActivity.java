@@ -27,7 +27,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public SortFragment sortFragment  = new SortFragment();
     public RemoveItem removeItem = new RemoveItem();
     public SearchChoice searchChoice = new SearchChoice();
+    public UpdateFragment updateFragment = new UpdateFragment();
     public Fragment fragment = null;
+
 
 
     @Override
@@ -47,6 +49,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         createList.setOnClickListener(this);
         exitBtn.setOnClickListener(this);
         checkOutBtn.setOnClickListener(this);
+        infoBtn.setOnClickListener(this);
 
         fragment = getSupportFragmentManager().findFragmentByTag("displayWholeList");
 
@@ -89,6 +92,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main,searchChoice)
+                    .commit();
+        }
+        else if(v.getId()==R.id.button6)
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragment_main,updateFragment)
                     .commit();
         }
     }

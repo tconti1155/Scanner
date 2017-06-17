@@ -131,6 +131,25 @@ public class Database extends SQLiteOpenHelper {
         return res;
     }
 
+    public void updateDescription(int id, String description)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("description",id);
+
+        db.update(ITEMS_TABLE_NAME,values,"id = ?",new String[]{description});
+    }
+
+    public void updateLocation(int id, String location){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("location",id);
+
+        db.update(ITEMS_TABLE_NAME,values,"id = ?", new String[]{location});
+    }
+
     public void removeItem(String name){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(ITEMS_TABLE_NAME, "description = ?",new String[]{name});

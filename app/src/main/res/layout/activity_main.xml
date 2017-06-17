@@ -95,7 +95,7 @@
         android:id="@+id/button6"
         android:layout_width="190dp"
         android:layout_height="56dp"
-        android:text="Button"
+        android:text="Update an Item"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

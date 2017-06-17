@@ -1,6 +1,7 @@
 package com.contiandsons.thomas.scanner;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -80,7 +81,7 @@ public class SearchChoice extends Fragment implements View.OnClickListener{
     public void nextFragment(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        
+
         fragmentTransaction.replace(((ViewGroup)getView().getParent()).getId(),displayWholeList);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
         fragmentTransaction.addToBackStack(null);
@@ -89,5 +90,6 @@ public class SearchChoice extends Fragment implements View.OnClickListener{
     }
 
     public void SearchChoice(){context = getActivity().getApplicationContext();}
+
 
 }
