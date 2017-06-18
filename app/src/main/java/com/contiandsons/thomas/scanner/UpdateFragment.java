@@ -1,6 +1,7 @@
 package com.contiandsons.thomas.scanner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,12 +19,12 @@ import android.widget.Toast;
 
 public class UpdateFragment extends Fragment implements View.OnClickListener{
 
-    Button updateName,updateLocation;
+    Button updateName,updateLocation, returnMain;
     EditText oldText, newText;
     Database database;
     Context context;
     Cursor cursor;
-
+    long temp = -1;
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = layoutInflater.inflate(R.layout.update_item,container,false);
@@ -31,12 +32,14 @@ public class UpdateFragment extends Fragment implements View.OnClickListener{
 
         updateName = (Button) view.findViewById(R.id.update_name);
         updateLocation = (Button) view.findViewById(R.id.update_location);
+        returnMain = (Button) view.findViewById(R.id.returnMain4);
 
         oldText = (EditText) view.findViewById(R.id.old_text);
         newText = (EditText) view.findViewById(R.id.update_text);
 
         updateName.setOnClickListener(this);
         updateLocation.setOnClickListener(this);
+        returnMain.setOnClickListener(this);
 
         oldText.setOnClickListener(this);
         newText.setOnClickListener(this);
@@ -49,13 +52,17 @@ public class UpdateFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view){
         if(view.getId()==R.id.update_name){
             pullDataName();
-            Toast.makeText(getActivity(),"Description has been updated with:" +
+            Toast.makeText(getActivity(),"Description has been updated with: " +
             newText.getText().toString(),Toast.LENGTH_LONG).show();
         }
-        else{
+        else if(view.getId()==R.id.update_location){
             pullDataLocation();
-            Toast.makeText(getActivity(),"Location has been updated with:" +
-                    newText.getText().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),"Location has been updated with: " +
+                    newText.getText().toString() + " " + temp,Toast.LENGTH_LONG).show();
+        }
+        else{
+            Intent intent = new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
         }
 
     }
@@ -68,9 +75,10 @@ public class UpdateFragment extends Fragment implements View.OnClickListener{
         database.updateDescription(cursor.getInt(cursor.getColumnIndex("id")),newText.getText().toString());
     }
 
-    public  void pullDataLocation(){
+    public  void  pullDataLocation(){
+
         cursor = database.searchLocation(oldText.getText().toString());
         cursor.moveToFirst();
-        database.updateLocation(cursor.getInt(cursor.getColumnIndex("id")),newText.getText().toString());
+        temp = database.updateLocation(cursor.getInt(cursor.getColumnIndex("id")),newText.getText().toString());
     }
 }

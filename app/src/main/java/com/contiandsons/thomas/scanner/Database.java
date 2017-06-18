@@ -38,7 +38,7 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXISTS gamble ");
+        db.execSQL("drop table if exists gamble ");
         onCreate(db);
     }
     public boolean tableExist(){
@@ -136,18 +136,19 @@ public class Database extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("description",id);
+        values.put("description",description);
 
-        db.update(ITEMS_TABLE_NAME,values,"id = ?",new String[]{description});
+        db.update("gamble",values,"id = ?",new String[]{Integer.toString(id)});
     }
 
-    public void updateLocation(int id, String location){
+    public long updateLocation(int id, String location){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put("location",id);
+        values.put("location",location);
 
-        db.update(ITEMS_TABLE_NAME,values,"id = ?", new String[]{location});
+        return db.update("gamble",values,"id = ?", new String[]{Integer.toString(id)});
+
     }
 
     public void removeItem(String name){
