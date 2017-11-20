@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground">
+    android:background="@drawable/scanner_background"
+    android:clickable="true">
 
     <TextView
         android:id="@+id/local"
@@ -62,7 +63,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/return_scan"
         android:id="@+id/results"
         android:text="Return to Scan"
         android:layout_width="wrap_content"
@@ -75,10 +78,12 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.984"
-        app:layout_constraintHorizontal_bias="0.035" />
+        app:layout_constraintVertical_bias="0.877"
+        app:layout_constraintHorizontal_bias="0.109" />
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/main_menu"
         android:id="@+id/returnMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,8 +94,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="123dp"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.979" />
+        app:layout_constraintVertical_bias="0.841" />
 </android.support.constraint.ConstraintLayout>

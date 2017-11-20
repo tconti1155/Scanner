@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -24,9 +25,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
  */
 
 public class Scanner extends FragmentActivity implements View.OnClickListener{
-    private Button scanBtn, resultsBtn;
+    private ImageButton scanBtn, resultsBtn, returnMain;
     private EditText local, descripition;
-    public Cursor cursor;
     public Database db = new Database(this);
     public ScanFragment scanFragment = new ScanFragment();
     public Fragment fragment = null;
@@ -35,23 +35,41 @@ public class Scanner extends FragmentActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scanner);
 
-        scanBtn = (Button) findViewById(R.id.scan_button);
-        resultsBtn = (Button) findViewById(R.id.results);
+        scanBtn = (ImageButton) findViewById(R.id.scan_button);
+        resultsBtn = (ImageButton) findViewById(R.id.results);
+        returnMain = (ImageButton) findViewById(R.id.returnMain6);
         local = (EditText) findViewById(R.id.editText);
         descripition = (EditText) findViewById(R.id.editText2);
         scanBtn.setOnClickListener(this);
         resultsBtn.setOnClickListener(this);
+        returnMain.setOnClickListener(this);
         fragment = getSupportFragmentManager().findFragmentByTag("scanFragment");}
 
         public void onClick(View v) {
             if (v.getId() == R.id.scan_button) {
-                IntentIntegrator scanIntergrator = new IntentIntegrator(this);
-                scanIntergrator.initiateScan();
-            } else {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragment_scan, scanFragment)
-                        .commit();
+                try {
+                    IntentIntegrator scanIntergrator = new IntentIntegrator(this);
+                    scanIntergrator.initiateScan();
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(Scanner.this,"Scan was not possible!",Toast.LENGTH_LONG).show();
+                }
+            } else if(v.getId()== R.id.results){
+                try{
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(R.id.fragment_scan, scanFragment)
+                            .commit();}
+                catch(Exception e)
+                {
+                    Toast.makeText(Scanner.this,"Scan check was not possible!",Toast.LENGTH_LONG).show();
+                }
+
+            }
+            else if(v.getId()==R.id.returnMain6){
+                Intent intent = new Intent(Scanner.this,MainActivity.class);
+                startActivity(intent);
             }
         }
 

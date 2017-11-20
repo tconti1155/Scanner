@@ -1,6 +1,7 @@
 package com.contiandsons.thomas.scanner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 /**
  * Created by Thomas on 6/11/2017.
@@ -19,8 +21,8 @@ import android.widget.EditText;
 
 public class SearchChoice extends Fragment implements View.OnClickListener{
 
-    Button search, returnMain;
-    CheckBox searchName,searchBarcode1,searchBarecode2,searchLocation;
+    ImageButton search, returnMain;
+    CheckBox searchName,searchBarcode1,searchLocation;
     EditText searchText;
     Database database;
     private Context context;
@@ -34,17 +36,15 @@ public class SearchChoice extends Fragment implements View.OnClickListener{
 
         searchName = (CheckBox) view.findViewById(R.id.search_by_name);
         searchBarcode1 = (CheckBox) view.findViewById(R.id.search_by_barcode_one);
-        searchBarecode2 = (CheckBox) view.findViewById(R.id.search_by_barcode_two);
         searchLocation = (CheckBox) view.findViewById(R.id.search_by_location);
 
-        returnMain = (Button) view.findViewById(R.id.returnMain2);
-        search = (Button) view.findViewById(R.id.search);
+        returnMain = (ImageButton) view.findViewById(R.id.returnMain2);
+        search = (ImageButton) view.findViewById(R.id.search);
 
         searchText = (EditText) view.findViewById(R.id.search_text);
 
         searchName.setOnClickListener(this);
         searchBarcode1.setOnClickListener(this);
-        searchBarecode2.setOnClickListener(this);
         searchLocation.setOnClickListener(this);
         returnMain.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -67,15 +67,15 @@ public class SearchChoice extends Fragment implements View.OnClickListener{
             {
                 displayWholeList.getWholeList(database.searchBarcodeOne(searchText.getText().toString()));
             }
-            else if(searchBarecode2.isChecked())
-            {
-                displayWholeList.getWholeList(database.searchBarcodeTwo(searchText.getText().toString()));
-            }
             else if(searchLocation.isChecked())
             {
                 displayWholeList.getWholeList(database.searchLocation(searchText.getText().toString()));
             }
             nextFragment();
+        }
+        else if(view.getId()==R.id.returnMain2){
+            Intent intent = new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
         }
     }
     public void nextFragment(){

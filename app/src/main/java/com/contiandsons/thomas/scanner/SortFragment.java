@@ -1,6 +1,7 @@
 package com.contiandsons.thomas.scanner;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * Created by Thomas on 6/15/2017.
@@ -16,7 +18,7 @@ import android.widget.Button;
 
 public class SortFragment extends Fragment implements View.OnClickListener {
 
-    Button sortLocation,sortName,sortBarcodeOne,sortBarcodeTwo,returnMain;
+    ImageButton sortLocation,sortName,sortBarcodeOne,returnMain;
     Database database;
     DisplayWholeList displayWholeList = new DisplayWholeList();
     public Context context;
@@ -28,16 +30,14 @@ public class SortFragment extends Fragment implements View.OnClickListener {
 
         database = new Database(getActivity());
 
-        sortLocation = (Button) view.findViewById(R.id.sort_by_location);
-        sortName = (Button) view.findViewById(R.id.sort_by_name);
-        sortBarcodeOne = (Button) view.findViewById(R.id.sort_by_barcode_one);
-        sortBarcodeTwo = (Button) view.findViewById(R.id.sort_by_barcode_two);
-        returnMain = (Button) view.findViewById(R.id.returnMain3);
+        sortLocation = (ImageButton) view.findViewById(R.id.sort_by_location);
+        sortName = (ImageButton) view.findViewById(R.id.sort_by_name);
+        sortBarcodeOne = (ImageButton) view.findViewById(R.id.sort_by_barcode_one);
+        returnMain = (ImageButton) view.findViewById(R.id.returnMain3);
 
         sortLocation.setOnClickListener(this);
         sortName.setOnClickListener(this);
         sortBarcodeOne.setOnClickListener(this);
-        sortBarcodeTwo.setOnClickListener(this);
         returnMain.setOnClickListener(this);
 
         return view;
@@ -60,16 +60,15 @@ public class SortFragment extends Fragment implements View.OnClickListener {
             displayWholeList.getSortedList(database.getOrderByBarcodeOne());
             nextFragment();
         }
-        else if(view.getId()==R.id.sort_by_barcode_two)
-        {
-            displayWholeList.getSortedList(database.getOrderbyBarcodeTwo());
-            nextFragment();
-        }
         else if(view.getId() == R.id.sort_by_location)
         {
 
             displayWholeList.getSortedList(database.getOrderByLocation());
             nextFragment();
+        }
+        else if(view.getId()==R.id.returnMain3){
+            Intent intent = new Intent(getActivity(),MainActivity.class);
+            startActivity(intent);
         }
 
     }

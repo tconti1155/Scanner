@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 public class ScanFragment extends Fragment implements  View.OnClickListener{
     private TextView location, contentText,descripText;
-    private Button returnBtn, returnMainBtn;
+    private ImageButton returnBtn, returnMainBtn;
     private Context context;
     private String localText, descrip;
     private long barcode1;
@@ -32,8 +33,8 @@ public class ScanFragment extends Fragment implements  View.OnClickListener{
         location = (TextView) view.findViewById(R.id.local);
         contentText = (TextView) view.findViewById(R.id.scan_content);
         descripText = (TextView) view.findViewById(R.id.descript);
-        returnBtn = (Button) view.findViewById(R.id.results);
-        returnMainBtn =(Button) view.findViewById(R.id.returnMain);
+        returnBtn = (ImageButton) view.findViewById(R.id.results);
+        returnMainBtn =(ImageButton) view.findViewById(R.id.returnMain);
 
         location.setText("Location: " + localText);
         descripText.setText("Description: " + descrip);

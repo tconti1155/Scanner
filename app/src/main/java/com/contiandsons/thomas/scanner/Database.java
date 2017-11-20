@@ -25,7 +25,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String ITEMS_COLUMN_DESCRIPTION = "description";
 
     public static final String CREATE_TABLE_1 = "create table gamble"+
-            "(id integer primary key, location text, sub_local_a double, sub_local_b double, description text)";
+            "(id integer primary key, location text, sub_local_a long, sub_local_b long, description text)";
 
     public Database(Context context){
         super(context, DATABASE_NAME, null,1);

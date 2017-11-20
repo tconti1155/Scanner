@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 public class UpdateFragment extends Fragment implements View.OnClickListener{
 
-    Button updateName,updateLocation, returnMain;
+    ImageButton updateName,updateLocation, returnMain;
     EditText oldText, newText;
     Database database;
     Context context;
@@ -30,9 +31,9 @@ public class UpdateFragment extends Fragment implements View.OnClickListener{
         View view = layoutInflater.inflate(R.layout.update_item,container,false);
         database = new Database(getActivity());
 
-        updateName = (Button) view.findViewById(R.id.update_name);
-        updateLocation = (Button) view.findViewById(R.id.update_location);
-        returnMain = (Button) view.findViewById(R.id.returnMain4);
+        updateName = (ImageButton) view.findViewById(R.id.update_name);
+        updateLocation = (ImageButton) view.findViewById(R.id.update_location);
+        returnMain = (ImageButton) view.findViewById(R.id.returnMain4);
 
         oldText = (EditText) view.findViewById(R.id.old_text);
         newText = (EditText) view.findViewById(R.id.update_text);
@@ -65,7 +66,7 @@ public class UpdateFragment extends Fragment implements View.OnClickListener{
             startActivity(intent);
         }
 
-    }
+     }
 
     public void UpdateFragment(){context = getActivity().getApplicationContext();}
 

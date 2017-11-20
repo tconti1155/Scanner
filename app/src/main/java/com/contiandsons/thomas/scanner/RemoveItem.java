@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -17,7 +18,7 @@ import android.widget.Toast;
 
 public class RemoveItem extends Fragment implements View.OnClickListener{
 
-    Button returnMenu, removeItem;
+    ImageButton returnMenu, removeItem;
     EditText removeItemText;
     Database database;
     private Context context;
@@ -27,8 +28,8 @@ public class RemoveItem extends Fragment implements View.OnClickListener{
         View view = layoutInflater.inflate(R.layout.remove_items, container, false);
         database = new Database(getActivity());
 
-        removeItem = (Button) view.findViewById(R.id.returnMain1);
-        returnMenu = (Button) view.findViewById(R.id.removeItem);
+        removeItem = (ImageButton) view.findViewById(R.id.returnMain1);
+        returnMenu = (ImageButton) view.findViewById(R.id.removeItem);
         removeItemText = (EditText) view.findViewById(R.id.removeItemText);
 
         removeItem.setOnClickListener(this);

@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -33,7 +34,7 @@ public class DisplayWholeList extends Fragment implements View.OnClickListener{
     long barcode1, barcode2;
     GridView gridView;
     TextView Location, Description, Barcode1, Barcode2;
-    Button button;
+    ImageButton button;
     int num;
     Context context;
     Database db = new Database(context);
@@ -42,7 +43,7 @@ public class DisplayWholeList extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.list_view, container, false);
 
         gridView = (GridView) view.findViewById(R.id.gridView);
-        button = (Button)view.findViewById(R.id.MainMenu);
+        button = (ImageButton)view.findViewById(R.id.MainMenu);
 
         button.setOnClickListener(this);
 
@@ -66,13 +67,10 @@ public class DisplayWholeList extends Fragment implements View.OnClickListener{
                 do {
                     location = cursor.getString(cursor.getColumnIndex("location"));
                     barcode1 = cursor.getLong(cursor.getColumnIndex("sub_local_a"));
-                    barcode2 = cursor.getLong(cursor.getColumnIndex("sub_local_b"));
                     description = cursor.getString(cursor.getColumnIndex("description"));
 
                     items.add(location);
-
                     items.add(Long.toString(barcode1));
-                    items.add(Long.toString(barcode2));
                     items.add(description);
 
 
@@ -87,8 +85,7 @@ public class DisplayWholeList extends Fragment implements View.OnClickListener{
 
     public void loadFiles() {
         items.add("Location");
-        items.add("Bar Code 1");
-        items.add("Bar Code 2");
+        items.add("Barcode");
         items.add("Description");
 
     }
@@ -100,13 +97,10 @@ public class DisplayWholeList extends Fragment implements View.OnClickListener{
             do {
                 location = cursor.getString(cursor.getColumnIndex("location"));
                 barcode1 = cursor.getLong(cursor.getColumnIndex("sub_local_a"));
-                barcode2 = cursor.getLong(cursor.getColumnIndex("sub_local_b"));
                 description = cursor.getString(cursor.getColumnIndex("description"));
 
                 items.add(location);
-
                 items.add(Long.toString(barcode1));
-                items.add(Long.toString(barcode2));
                 items.add(description);
 
 

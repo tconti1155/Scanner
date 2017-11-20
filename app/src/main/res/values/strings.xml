@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Scanner</string>
+    <string name="app_name">Catalog</string>
     <string name="scan">Scan</string>
     <string name="fragment">Fragment</string>
     <string name="fragment_list">Fragment_list</string>
+    <string name="splash_screen">SplashScreen</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8693895569222174/5989996778</string>
 </resources>

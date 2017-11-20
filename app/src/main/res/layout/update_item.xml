@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorBackground">
+    android:background="@drawable/scanner_background"
+    android:clickable="true">
 
     <EditText
         android:id="@+id/old_text"
@@ -36,9 +37,12 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.448" />
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/update_name"
         android:id="@+id/update_name"
         android:text="Update Name"
         android:layout_width="wrap_content"
@@ -47,16 +51,18 @@
         tools:layout_constraintLeft_creator="1"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toRightOf="@+id/update_location"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.836" />
+        app:layout_constraintVertical_bias="0.784"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/update_location"
         android:id="@+id/update_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,10 +77,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.836" />
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintVertical_bias="0.635" />
 
-    <Button
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:src="@drawable/main_menu"
         android:id="@+id/returnMain4"
         android:text="Return to Main"
         android:layout_width="wrap_content"
