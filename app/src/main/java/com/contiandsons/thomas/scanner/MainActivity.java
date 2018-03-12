@@ -57,6 +57,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         fileDownload = (ImageButton) findViewById(R.id.button7);
 
 
+
         scanBtn.setOnClickListener(this);
         listBtn.setOnClickListener(this);
         sortList.setOnClickListener(this);

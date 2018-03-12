@@ -17,7 +17,7 @@
         android:textStyle="bold"
         android:layout_marginTop="21dp"
         android:textSize="18dp"
-        android:text="Enter in Location and Discribtion before hitting scan\n Tip: Use app in a well let room when scanning." />
+        android:text="Enter in Location and Description before hitting scan\n Tip: Use app in a well let room when scanning." />
 
     <EditText
         android:id="@+id/editText"

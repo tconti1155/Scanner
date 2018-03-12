@@ -89,11 +89,10 @@ public class Scanner extends FragmentActivity implements View.OnClickListener{
             "No Scan Data Received!", Toast.LENGTH_SHORT);
             toast.show();
         }
-        String scanContent = scanningResult.getContents();
-        i = Long.parseLong(scanContent);
-        db.insertReg(local.getText().toString(),i,0,descripition.getText().toString());
 
-        scanFragment.get(db.getBarcodeOneInfo(i));
+        db.insertReg(local.getText().toString(),scanningResult.getContents(),0,descripition.getText().toString());
+
+        scanFragment.get(db.getBarcodeOneInfo(scanningResult.getContents()));
 
 
     }

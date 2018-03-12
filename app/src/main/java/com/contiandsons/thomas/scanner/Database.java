@@ -51,7 +51,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public boolean insertReg(String local,long subLocalA, long subLocalB,String descrip){
+    public boolean insertReg(String local,String subLocalA, long subLocalB,String descrip){
         SQLiteDatabase db =this.getWritableDatabase();
         ContentValues contextValues = new ContentValues();
 
@@ -94,7 +94,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
 
-    public Cursor getBarcodeOneInfo(long code)
+    public Cursor getBarcodeOneInfo(String code)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = db.rawQuery("select * from gamble where sub_local_a=" + code + "", null);
