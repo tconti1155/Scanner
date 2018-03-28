@@ -1,35 +1,26 @@
 package com.contiandsons.thomas.scanner;
 
-import android.app.Activity;
-import android.database.Cursor;
-import android.media.Image;
+
 import android.os.Bundle;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
-
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import java.util.List;
+/*
+    This Activity is the Main Activity It has all tge options available for users
+    to scan bar codes and thus access information in different ways
+ */
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener {
-    private ImageButton scanBtn;
-    private ImageButton listBtn;
-    private ImageButton sortList;
-    private ImageButton removeBtn;
-    private ImageButton searchBtn;
-    private ImageButton updateBtn;
-    private ImageButton fileDownload;
-    boolean isMinimized;
-    private static final String TAG = "MainActivity";
-    private AdView mAdView;
-    public Database db = new Database(this);
+    private ImageButton scanBtn,listBtn,sortList,removeBtn,searchBtn,updateBtn,fileDownload;    // Creating Image Buttons
+    boolean isMinimized;                                                                        // Creating a boolean to
+    private static final String TAG = "MainActivity";                                           // Creating a tag for mainActivity
+    private AdView mAdView;                                                                     // For creating ads
+    public Database db = new Database(this);                                            // Creating variables for various fragment classes
     public DisplayWholeList displayWholeList = new DisplayWholeList();
     public SortFragment sortFragment = new SortFragment();
     public RemoveItem removeItem = new RemoveItem();
@@ -39,6 +30,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public Fragment fragment = null;
 
 
+    // Creating buttons for all users options
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +58,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         updateBtn.setOnClickListener(this);
         fileDownload.setOnClickListener(this);
 
+        // Getting support for calling the DisplayWholeList Class
         fragment = getSupportFragmentManager().findFragmentByTag("displayWholeList");
-
 
     }
 
+    // Actions taken based on a button click
     public void onClick(View v) {
+        // Calls the scanning activity when button is pressed
         if (v.getId() == R.id.button) {
             Intent intent = new Intent(MainActivity.this, Scanner.class);
             startActivity(intent);
-        } else if (v.getId() == R.id.button2) {
+        }
+
+        // Displaying a all the items in database when button 2 is pressed
+        else if (v.getId() == R.id.button2) {
             if (displayWholeList.clearGrid() == true) {
                 displayWholeList.loadFiles();
                 displayWholeList.getWholeList(db.getWholeList());
@@ -85,27 +82,42 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                         .commit();
             }
 
-        } else if (v.getId() == R.id.button3) {
+        }
+
+        // Calls for sorting fragment
+        else if (v.getId() == R.id.button3) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main, sortFragment)
                     .commit();
-        } else if (v.getId() == R.id.button4) {
+        }
+
+        // Calls for the removing item fragment
+        else if (v.getId() == R.id.button4) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main, removeItem)
                     .commit();
-        } else if (v.getId() == R.id.button5) {
+        }
+
+        // Calling for the search fragment
+        else if (v.getId() == R.id.button5) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main, searchChoice)
                     .commit();
-        } else if (v.getId() == R.id.button6) {
+        }
+
+        // Calls the update fragment
+        else if (v.getId() == R.id.button6) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main, updateFragment)
                     .commit();
-        } else if (v.getId() == R.id.button7) {
+        }
+
+        // Calls the exporting files fragment
+        else if (v.getId() == R.id.button7) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.fragment_main, exportFile)
@@ -113,6 +125,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    // Used to start the splash screen
     @Override
     protected void onStart() {
         super.onStart();
@@ -123,6 +136,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    // Used to start the splash screen
     @Override
     protected void onResume() {
         super.onResume();

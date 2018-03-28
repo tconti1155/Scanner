@@ -9,27 +9,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileOutputStream;
 
 /**
  * Created by Thomas on 6/18/2017.
+ *
+ * This Fragment allows the user to export the Database table
  */
 
 public class ExportFile extends Fragment implements View.OnClickListener{
-    String fileName = "MyDatabase.odt";
-    String fileName1 = "MyDatabase.ods";
-    FileOutputStream fileOutputStream;
-    ImageButton docFile, sheetsFile, returnMain;
-    File file;
-    Database database;
-    Cursor cursor;
-    Context context;
+    String fileName = "MyDatabase.odt";         // Creating a filename for Document file
+    String fileName1 = "MyDatabase.ods";        // Creating a filename for excel table
+    FileOutputStream fileOutputStream;          // For outputting files
+    ImageButton docFile, sheetsFile, returnMain; // Creating buttons for doc, sheets, return to main
+    File file;                                  // File variable
+    Database database;                          // Database variable
+    Cursor cursor;                              // Cursor variable
+    Context context;                            // Context variable
 
+
+    // Setting up image buttons
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup container,  Bundle instanceSavedState) {
 
         View view = layoutInflater.inflate(R.layout.export_files,container,false);
@@ -47,18 +49,24 @@ public class ExportFile extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    // Sets up outputting document files, sheet files or returning to main menu
     public void onClick(View view){
+
+        // For when the doc button is pressed
         if(view.getId()==R.id.doc_file){
             try {
                 DocFile();
             }
+            // Letting user know if the file can not be saved
             catch (Exception e){
                 Toast.makeText(getActivity(),"File was unable to be saved", Toast.LENGTH_LONG).show();
             }
+            // Letting the user know where the file is located
             finally {
                 Toast.makeText(getActivity(),"File named: MyDatabase.doc was created in Downloads Folder", Toast.LENGTH_LONG).show();
             }
         }
+        // For when the Excel button is pressed
         else if(view.getId()==R.id.Excel_File){
             try{
                 ExcelFile();
@@ -71,6 +79,7 @@ public class ExportFile extends Fragment implements View.OnClickListener{
                 Toast.makeText(getActivity(),"File named: MyDatabase.xls was created in Downloads Folder", Toast.LENGTH_LONG).show();
             }
         }
+        // For when the return to main menu button is pushed
         else if(view.getId()==R.id.returnMain5){
             Intent intent = new Intent(getActivity(),MainActivity.class);
             startActivity(intent);
@@ -82,8 +91,12 @@ public class ExportFile extends Fragment implements View.OnClickListener{
         context = getActivity().getApplicationContext();
     }
 
+
+    // Exporting to a document file
     public void DocFile() {
         try {
+
+            // Writing the beginning of the document file
             file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName);
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write("Location".getBytes());
@@ -95,6 +108,7 @@ public class ExportFile extends Fragment implements View.OnClickListener{
             cursor = database.getWholeList();
             cursor.moveToFirst();
 
+            // Taking the files from the database and writing them to document file
             if (cursor.getCount() > 0) {
                 do {
                     Long temp = cursor.getLong(cursor.getColumnIndex("sub_local_a"));
@@ -113,8 +127,10 @@ public class ExportFile extends Fragment implements View.OnClickListener{
         }
     }
 
+   // Exporting the Excel file
     public void ExcelFile(){
         try {
+            // Writing the beginning of the excel file
             file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), fileName1);
             fileOutputStream = new FileOutputStream(file);
             fileOutputStream.write("Location".getBytes());
@@ -126,6 +142,8 @@ public class ExportFile extends Fragment implements View.OnClickListener{
             cursor = database.getWholeList();
             cursor.moveToFirst();
 
+
+            // Taking the files from the database and writing them to excel file
             if (cursor.getCount() > 0) {
                 do {
                     Long temp = cursor.getLong(cursor.getColumnIndex("sub_local_a"));
